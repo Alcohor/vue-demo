@@ -6,19 +6,19 @@
                     <i class="fa fa-home"></i>
                     <span class="nav-title">首页</span>
                 </a>
-            </router-link>
-            <li class="nav-bar" >
+            </router-link >
+            <router-link active-class="active" @click.native = "$emit('update:show', false)" tag = "li" to = "/order" class="nav-bar"  >
                 <a href="" class="nav-link">
                     <i class="fa fa-sticky-note"></i>
                     <span class="nav-title">订单</span>
                 </a>
-            </li>
-            <li class="nav-bar">
+            </router-link>
+            <router-link active-class="active" @click.native = "$emit('update:show', false)" tag = "li" to = "/mine" class="nav-bar">
                 <a href="" class="nav-link">
                     <i class="fa fa-user-o"></i>
                     <span class="nav-title">我的</span>
                 </a>
-            </li>
+            </router-link>
             
         </ul>
     </div>

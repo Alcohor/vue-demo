@@ -13,6 +13,21 @@ module.exports={
             pathRewrite: {
               '^/maoyan': ''
             }
+          },
+
+          '/mz': {
+            target: 'https://m.maizuo.com/',
+            changeOrigin: true,
+            pathRewrite: {
+              '^/mz': ''
+            }
+          },
+          '/bd': {
+            target: 'https://api.map.baidu.com/',
+            changeOrigin: true,
+            pathRewrite: {
+              '^/bd': ''
+            }
           }
         }
       },

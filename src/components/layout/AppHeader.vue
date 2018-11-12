@@ -5,7 +5,7 @@
             <div class="position-wrap">
                 <a @click="isLocatShow = !isLocatShow">
                     <i class="fa fa-map-marker locat-icon"></i>
-                    <span class="locat-name">天安门</span>
+                    <span class="locat-name">{{chunks.city?chunks.city.cityName:"正在定位"}}</span>
                     <i class="fa fa-sort-down arrow-down" ></i>
                 </a>
             </div>
@@ -21,14 +21,26 @@
 
 <script>
     import AppHeaderLocat from '@c/layout/AppHeaderLocat'
+    import { CHANGE_CITY } from '@/store/chunks/mutation-types'
+    import { mapState } from 'vuex'
     export default{
         data(){
             return{ isLocatShow:false}
         },
         components:{
             AppHeaderLocat
-        }
+        },
+        beforeCreate() {
+             this.$bus.$on("changeIsShow",function(){
+                this.isLocatShow=false
+                console.log(this.isLocatShow)
+            }),
+           
+            this.$store.dispatch( 'chunks/getCurrentPosition')
+        },
+        computed: mapState(['chunks']),       
     }
+
 </script>
 
 <style lang = "scss">
@@ -73,6 +85,8 @@
         .searchbox-container{
             height: 1.36rem;
             width: 100%;
+            position: sticky;
+            top: 0;
             background-color: $base-them-color;
             .searbox-wrap{
                 display:flex;

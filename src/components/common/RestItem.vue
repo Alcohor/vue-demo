@@ -1,6 +1,6 @@
 <template>
     <li class="rest-item" @click="goToDetail">
-        <img class="rest-img" :src = "info.img|getImgUrl" alt="">
+        <img class="rest-img" :src= "info.img|getImgUrl" alt="">
         <div class="rest-intro-wrap">
             <h2 class = "rest-name">{{info.nm}}</h2>
             <div class="grade">
@@ -19,10 +19,9 @@ export default {
   props: ["info"],
   methods: {
     goToDetail() {
-        console.log(this.$router)
       //   this.$router.push({ name: 'detail', params: { id: this.info.id } })
       this.$router.push({
-        name: "detail",
+        name: "foods-list",
         params: { id: this.info.id },
         query: { name: this.info.name }
       });
@@ -40,9 +39,11 @@ export default {
   width: 100%;
   padding: 0.32rem 0.746667rem;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
   .rest-intro-wrap {
+    flex-grow: 1;
+    text-align: left;
     padding: 0 0.2rem;
     .rest-name {
       font-size: 0.453333rem;
