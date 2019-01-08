@@ -73,7 +73,6 @@ export default {
           this.$bus.$emit('changeIsShow') 
         },
         changeCity ({id: cityId, name: cityName}) {
-          console.log(1111)
             // 更改城市信息
             this.$store.commit({type: 'chunks/' + CHANGE_CITY, city: {
                 cityId, cityName

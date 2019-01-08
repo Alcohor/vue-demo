@@ -21,7 +21,7 @@ export default {
     goToDetail() {
       //   this.$router.push({ name: 'detail', params: { id: this.info.id } })
       this.$router.push({
-        name: "foods-list",
+        name: "rest-introduce",
         params: { id: this.info.id },
         query: { name: this.info.name }
       });

@@ -32,8 +32,6 @@
         },
         beforeCreate() {
              this.$bus.$on("changeIsShow",function(){
-                this.isLocatShow=false
-                console.log(this.isLocatShow)
             }),
            
             this.$store.dispatch( 'chunks/getCurrentPosition')

@@ -1,20 +1,44 @@
 <template>
     <li class="foods-item">
-        <img class="foods-img" src = "//fuss10.elemecdn.com/0/8e/1f27b145da683ebdac357756ec09fpng.png?imageMogr/format/webp/thumbnail/150x/" alt="">
+        <img class="foods-img" :src= 'info.img'>
         <div class="foods-intro-wrap">
-            <h2 class = "foods-name"></h2>
+            <h2 class = "foods-name">{{info.name}}</h2>
             <div class="price">
-                <span>单价:</span>
+                <span>单价:￥{{info.price}}</span>
                 <mark>7.9</mark>
             </div>
         </div>
-        <div class="addto-cart-btn">+</div>
+       
+        <el-input-number @change = "addGoodsHandler" v-model = "num" :min="0" :max="10" label="描述文字"></el-input-number>
+           
     </li>
 </template>
 
 <script>
+import { mapActions } from 'vuex'
     export default{
-        props:['info']
+        props:['info'],
+        data(){
+            return{
+                num:0,
+            }
+        },
+        created(){
+            console.log(this.num,111)
+        },
+        methods:{
+            ...mapActions({
+                addGoods:'cart/addGoods'
+            }),
+            addGoodsHandler(val,oldval){
+                console.log(this.num)
+                let control_type=oldval<val
+                let {id,name,price}= this.info
+                this.addGoods({
+                    id,name,price,num:this.num
+                })
+            }
+        }
     }
 </script>
 

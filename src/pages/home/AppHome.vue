@@ -45,35 +45,26 @@ import { Toast } from 'mint-ui';
         },
        
         async beforeCreate() {
-            
             let _result = await this.$http({
                 url:'/maoyan/ajax/movieOnInfoList?token='
             })
             this.results = _result.data.movieList;
             this.idList = _result.data.movieIds;
-           
             this.idArr=[]
             for(var i=12,len=this.idList.length;i<len;i+=10){
                 this.idArr.push(this.idList.slice(i,i+10).toString());
             }
-           
         },
        
-
         mounted(){           
-          
            this.scroll = scroll({
                 el:this.$refs.root,
                 handler:this.getMoreRests
-            })
-            
+            }) 
         },
         methods:{
-            
             async getMoreRests(){
-
                 if ( this.count>=this.idArr.length ) {
-                
                 if (this.instance) this.instance.close()
                 this.instance = Toast({
                     message: '没有更多了...',
@@ -82,8 +73,6 @@ import { Toast } from 'mint-ui';
                 })
                 return false;
             };
-
-                
                 let moreRests = await this.$http({
                     url:'/maoyan/ajax/moreComingList?token=',
                     params:{
@@ -95,7 +84,6 @@ import { Toast } from 'mint-ui';
                 this.results = this.results.concat(moreRests.data.coming);
             }
         }
-      
     }
 </script>
     
